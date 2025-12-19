@@ -11,6 +11,9 @@ jobs:
   build:
     name: 🏗️ Build Nextjs Application
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: 📥 Checkout repository
         uses: actions/checkout@v3
@@ -33,7 +36,14 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: 🚀 Push Docker image to GitHub Container Registry
+
+      - name: Lowercase Repo Slug
         run: |
-          docker tag portfolio-isaac ghcr.io/${{ github.repository_owner }}/portfolio-isaac:latest
-          docker push ghcr.io/${{ github.repository_owner }}/portfolio-isaac:latest
+          echo "REPO_SLUG=${GITHUB_REPOSITORY,,}" >> ${GITHUB_ENV}
+        env:
+          GITHUB_REPOSITORY: "${{ github.repository }}"
+
+      - name: Push Docker image to GitHub Container Registry
+        run: |
+          docker tag portfolio ghcr.io/${{ env.REPO_SLUG }}:latest
+          docker push ghcr.io/${{ env.REPO_SLUG }}:latest
