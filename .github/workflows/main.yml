@@ -38,12 +38,13 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Lowercase Repo Slug
-        run: echo "REPO_SLUG=${GITHUB_REPOSITORY,,}" >> ${GITHUB_ENV}
+        run: |
+          echo "REPO_SLUG=${GITHUB_REPOSITORY,,}" >> ${GITHUB_ENV}
         env:
           GITHUB_REPOSITORY: "${{ github.repository }}"
 
       - name: Push Docker image to GitHub Container Registry
-        run: 
+        run: |
           docker tag portfolio-isaac ghcr.io/${{ env.REPO_SLUG }}:latest
           docker push ghcr.io/${{ env.REPO_SLUG }}:latest
 
