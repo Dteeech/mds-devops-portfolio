@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 jobs:
   analyze:
-    name: Build and analyze
+    name: Analyze
     runs-on: ubuntu-latest
     
     steps:
