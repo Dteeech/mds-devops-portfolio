@@ -18,7 +18,7 @@ export default function Home() {
         <div className="max-w-5xl mx-auto">
           <Reveal>
             <h2 className="text-3xl font-bold mb-12 flex items-center gap-3">
-              <span className="w-8 h-1 bg-indigo-500 rounded-full"></span>
+              <span className="w-8 h-1 bg-indigo-500 rounded-full"></span> {' '}
               À propos
             </h2>
             <div className="grid md:grid-cols-2 gap-12 items-center">

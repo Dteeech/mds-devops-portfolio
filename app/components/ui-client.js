@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowRight, Github, Linkedin, Mail, ExternalLink, Code2, Database, Layout, Terminal } from 'lucide-react';
+import { ArrowRight, ExternalLink, Layout } from 'lucide-react';
 
 export function HeroSection() {
   return (
