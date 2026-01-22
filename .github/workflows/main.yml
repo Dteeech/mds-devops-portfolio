@@ -133,6 +133,18 @@ jobs:
           port: ${{ secrets.DEPLOY_PORT }}
           script: |
             cd /home/${{secrets.DEPLOY_USER}}/apps/portfolio
+            
+            # Créer le fichier .env avec les secrets Grafana
+            cat > .env << 'EOF'
+            NEXT_PUBLIC_FARO_URL=${{ secrets.FARO_COLLECTOR_URL }}
+            NEXT_PUBLIC_FARO_APP_NAME=mds-devops-portfolio
+            NEXT_PUBLIC_FARO_ENV=production
+            OTEL_SERVICE_NAME=${{ secrets.OTEL_SERVICE_NAME }}
+            OTEL_EXPORTER_OTLP_ENDPOINT=${{ secrets.OTEL_EXPORTER_OTLP_ENDPOINT }}
+            OTEL_EXPORTER_OTLP_HEADERS=${{ secrets.OTEL_EXPORTER_OTLP_HEADERS }}
+            OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
+            EOF
+            
             docker compose pull
             docker compose down
             docker compose up -d
