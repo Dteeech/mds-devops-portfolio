@@ -126,22 +126,28 @@ jobs:
     steps:
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v0.1.6
+        env:
+          FARO_URL: ${{ secrets.FARO_COLLECTOR_URL }}
+          OTEL_SERVICE: ${{ secrets.OTEL_SERVICE_NAME }}
+          OTEL_ENDPOINT: ${{ secrets.OTEL_EXPORTER_OTLP_ENDPOINT }}
+          OTEL_HEADERS: ${{ secrets.OTEL_EXPORTER_OTLP_HEADERS }}
         with:
           host: ${{ secrets.DEPLOY_HOST }}
           username: ${{ secrets.DEPLOY_USER }}
           key: ${{ secrets.DEPLOY_KEY }}
           port: ${{ secrets.DEPLOY_PORT }}
+          envs: FARO_URL,OTEL_SERVICE,OTEL_ENDPOINT,OTEL_HEADERS
           script: |
             cd /home/${{secrets.DEPLOY_USER}}/apps/portfolio
             
             # Créer le fichier .env avec les secrets Grafana
-            cat > .env << 'EOF'
-            NEXT_PUBLIC_FARO_URL=${{ secrets.FARO_COLLECTOR_URL }}
+            cat > .env << EOF
+            NEXT_PUBLIC_FARO_URL=${FARO_URL}
             NEXT_PUBLIC_FARO_APP_NAME=mds-devops-portfolio
             NEXT_PUBLIC_FARO_ENV=production
-            OTEL_SERVICE_NAME=${{ secrets.OTEL_SERVICE_NAME }}
-            OTEL_EXPORTER_OTLP_ENDPOINT=${{ secrets.OTEL_EXPORTER_OTLP_ENDPOINT }}
-            OTEL_EXPORTER_OTLP_HEADERS=${{ secrets.OTEL_EXPORTER_OTLP_HEADERS }}
+            OTEL_SERVICE_NAME=${OTEL_SERVICE}
+            OTEL_EXPORTER_OTLP_ENDPOINT=${OTEL_ENDPOINT}
+            OTEL_EXPORTER_OTLP_HEADERS=${OTEL_HEADERS}
             OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
             EOF
             
