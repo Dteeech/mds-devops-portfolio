@@ -7,15 +7,26 @@ let faro = null;
 
 export function FaroProvider({ children }) {
   useEffect(() => {
+    // Désactiver en développement - monitoring uniquement en production
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('ℹ️ Grafana Faro désactivé en développement');
+      return;
+    }
+
     // Initialiser Faro uniquement côté client et une seule fois
     if (typeof window !== 'undefined' && !faro) {
       const faroUrl = process.env.NEXT_PUBLIC_FARO_URL;
       const faroAppName = process.env.NEXT_PUBLIC_FARO_APP_NAME;
-      const faroEnv = process.env.NEXT_PUBLIC_FARO_ENV || 'development';
+      const faroEnv = process.env.NEXT_PUBLIC_FARO_ENV || 'production';
+
+      console.log('🔍 Debug Grafana Faro configuration:');
+      console.log(`   Faro URL: ${faroUrl}`);
+      console.log(`   App Name: ${faroAppName}`);
+      console.log(`   Environment: ${faroEnv}`);
 
       // Ne pas initialiser si l'URL n'est pas configurée
       if (!faroUrl || faroUrl.includes('YOUR_INSTANCE_ID')) {
-        console.warn('⚠️ Grafana Faro non initialisé: NEXT_PUBLIC_FARO_URL manquant ou invalide');
+        console.error('❌ Grafana Faro non initialisé: NEXT_PUBLIC_FARO_URL manquant ou invalide');
         return;
       }
 
@@ -51,6 +62,14 @@ export function FaroProvider({ children }) {
         });
 
         console.log('✅ Grafana Faro initialisé avec succès');
+        console.log(`   App: ${faroAppName}`);
+        console.log(`   Environment: ${faroEnv}`);
+        console.log('');
+        console.log('🔍 Pour vérifier les données dans Grafana Cloud:');
+        console.log(`   1. Allez sur https://dteeech.grafana.net`);
+        console.log(`   2. Menu: Application → Frontend Observability`);
+        console.log(`   3. Sélectionnez: ${faroAppName}`);
+        console.log('');
 
         // Capturer les Core Web Vitals (CLS, FID, LCP, FCP, TTFB)
         if ('PerformanceObserver' in window) {

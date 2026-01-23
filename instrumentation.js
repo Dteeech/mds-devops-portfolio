@@ -10,6 +10,12 @@
  */
 
 export async function register() {
+  // Désactiver en développement - monitoring uniquement en production
+  if (process.env.NODE_ENV !== 'production') {
+    console.log('ℹ️ OpenTelemetry désactivé en développement');
+    return;
+  }
+
   // Instrumentation côté serveur uniquement
   if (process.env.NEXT_RUNTIME === 'nodejs') {
     const { NodeSDK } = await import('@opentelemetry/sdk-node');
@@ -22,10 +28,26 @@ export async function register() {
     const otlpEndpoint = process.env.OTEL_EXPORTER_OTLP_ENDPOINT;
     const otlpHeaders = process.env.OTEL_EXPORTER_OTLP_HEADERS;
 
+    console.log('🔍 Debug OpenTelemetry configuration:');
+    console.log(`   NODE_ENV: ${process.env.NODE_ENV}`);
+    console.log(`   Service Name: ${serviceName}`);
+    console.log(`   OTLP Endpoint: ${otlpEndpoint}`);
+    console.log(`   Headers configured: ${otlpHeaders ? 'Yes' : 'No'}`);
+
+    console.log('🔍 Debug OpenTelemetry configuration:');
+    console.log(`   NODE_ENV: ${process.env.NODE_ENV}`);
+    console.log(`   Service Name: ${serviceName}`);
+    console.log(`   OTLP Endpoint: ${otlpEndpoint}`);
+    console.log(`   Headers configured: ${otlpHeaders ? 'Yes' : 'No'}`);
+
     // Vérifier que les variables d'environnement sont configurées
-    if (!otlpEndpoint || !otlpHeaders || otlpHeaders.includes('YOUR_BASE64')) {
-      console.warn('⚠️ OpenTelemetry non initialisé: Variables d\'environnement OTEL manquantes ou invalides');
-      console.warn('   Vérifiez OTEL_EXPORTER_OTLP_ENDPOINT et OTEL_EXPORTER_OTLP_HEADERS dans .env.local');
+    if (!otlpEndpoint) {
+      console.error('❌ OpenTelemetry non initialisé: OTEL_EXPORTER_OTLP_ENDPOINT manquant');
+      return;
+    }
+
+    if (!otlpHeaders || otlpHeaders.includes('YOUR_BASE64')) {
+      console.error('❌ OpenTelemetry non initialisé: OTEL_EXPORTER_OTLP_HEADERS manquant ou invalide');
       return;
     }
 
@@ -38,10 +60,18 @@ export async function register() {
       });
 
       // Configuration de l'exporteur OTLP vers Grafana Cloud
+      const fullUrl = `${otlpEndpoint}/v1/traces`;
+      console.log(`📡 Configuring OTLP exporter to: ${fullUrl}`);
+      
       const traceExporter = new OTLPTraceExporter({
-        url: `${otlpEndpoint}/v1/traces`,
+        url: fullUrl,
         headers: {
-          Authorization: otlpHeaders.replace('Authorization=', ''),
+          // Le header doit être au format: Authorization: Basic <base64>
+          // Si OTEL_EXPORTER_OTLP_HEADERS contient déjà "Authorization=Basic XXX", on l'extrait
+          ...(otlpHeaders.startsWith('Authorization=') 
+            ? { Authorization: otlpHeaders.replace('Authorization=', '') }
+            : { Authorization: otlpHeaders }
+          )
         },
       });
 
@@ -73,7 +103,14 @@ export async function register() {
       sdk.start();
       console.log('✅ OpenTelemetry SDK initialisé avec succès');
       console.log(`   Service: ${serviceName}`);
-      console.log(`   Endpoint: ${otlpEndpoint}`);
+      console.log(`   Endpoint: ${fullUrl}`);
+      console.log(`   Environment: ${process.env.NODE_ENV}`);
+      console.log('');
+      console.log('🔍 Pour vérifier les traces dans Grafana Cloud:');
+      console.log(`   1. Allez sur https://dteeech.grafana.net`);
+      console.log(`   2. Menu: Explore → Tempo`);
+      console.log(`   3. Recherchez: {resource.service.name="${serviceName}"}`);
+      console.log('');
 
       // Graceful shutdown
       process.on('SIGTERM', () => {
