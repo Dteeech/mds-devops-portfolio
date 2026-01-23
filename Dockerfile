@@ -54,6 +54,9 @@ RUN chown nextjs:nodejs .next
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
+# Copy instrumentation.js for OpenTelemetry (not included in standalone output)
+COPY --from=builder --chown=nextjs:nodejs /app/instrumentation.js ./instrumentation.js
+
 USER nextjs
 
 EXPOSE 3000
