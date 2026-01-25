@@ -63,7 +63,7 @@ describe('Page Home (Portfolio)', () => {
     it('devrait avoir les liens externes corrects', () => {
       render(<Home />);
       expect(screen.getByRole('link', { name: /Parking Privé Aéroport/i })).toHaveAttribute('href', 'https://parking-prive-aeroport-nantes.fr/');
-      expect(screen.getByRole('link', { name: /Guilmault Catherine/i })).toHaveAttribute('href', 'http://guilmault-catherine.fr/');
+      expect(screen.getByRole('link', { name: /Guilmault Catherine/i })).toHaveAttribute('href', 'https://guilmault-catherine.fr/');
     });
   });
 

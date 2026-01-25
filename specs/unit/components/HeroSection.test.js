@@ -7,6 +7,12 @@ jest.mock('@/app/components/magicui/dotgrid', () => {
   };
 });
 
+jest.mock('@/app/components/magicui/ShinyText', () => {
+  return function DummyShinyText({ text }) {
+    return <span data-testid="shiny-text">{text}</span>;
+  };
+});
+
 describe('HeroSection Component', () => {
   it('devrait s\'afficher sans erreur', () => {
     const { container } = render(<HeroSection />);

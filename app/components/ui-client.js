@@ -1,10 +1,13 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
 import { ArrowRightIcon, ArrowSquareOutIcon, LayoutIcon, CodeIcon, PaintBrushIcon, HardDrivesIcon, GitBranchIcon, PaperPlaneTiltIcon, CloudArrowUpIcon } from '@phosphor-icons/react';
 import Image from 'next/image';
 import DotGrid from './magicui/dotgrid';
 import { useTheme } from 'next-themes';
+import ShinyText from './magicui/ShinyText';
+
 
 export function HeroSection() {
   const { theme } = useTheme();
@@ -46,7 +49,21 @@ export function HeroSection() {
             transition={{ duration: 0.5, delay: 0.1 }}
           >
             Isaac <br />
-            <span className="text-zinc-500 dark:text-zinc-400">Dev Fullstack &</span> <br />
+            <span className="text-zinc-500 dark:text-zinc-400">
+
+              <ShinyText
+                text="Dev Fullstack &"
+                speed={2}
+                delay={0}
+                color="#b5b5b5"
+                shineColor="#7C86FF"
+                spread={120}
+                direction="left"
+                yoyo={false}
+                pauseOnHover={false}
+                disabled={false}
+              />
+            </span> <br />
             Chef de Projet Digital.
           </motion.h1>
 
@@ -95,7 +112,7 @@ export function HeroSection() {
   );
 }
 
-export function Reveal({ children, delay = 0 }) {
+export function Reveal({ children, delay }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -107,6 +124,15 @@ export function Reveal({ children, delay = 0 }) {
     </motion.div>
   );
 }
+
+Reveal.propTypes = {
+  children: PropTypes.node.isRequired,
+  delay: PropTypes.number
+};
+
+Reveal.defaultProps = {
+  delay: 0
+};
 
 export function ProjectCard({ title, description, tags, color, href }) {
   const CardContent = (
@@ -147,7 +173,19 @@ export function ProjectCard({ title, description, tags, color, href }) {
   }
 
   return CardContent;
-}
+};
+
+ProjectCard.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+  color: PropTypes.string.isRequired,
+  href: PropTypes.string
+};
+
+ProjectCard.defaultProps = {
+  href: undefined
+};
 
 export function SkillBadge({ icon, name, level }) {
   return (
@@ -165,6 +203,12 @@ export function SkillBadge({ icon, name, level }) {
     </motion.div>
   );
 }
+
+SkillBadge.propTypes = {
+  icon: PropTypes.element.isRequired,
+  name: PropTypes.string.isRequired,
+  level: PropTypes.string.isRequired
+};
 
 export function TechStack() {
   const tools = [

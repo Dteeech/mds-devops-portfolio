@@ -130,7 +130,7 @@ export default function Home() {
                 description="Site vitrine pour une artiste peintre. Design épuré et mise en avant des réalisations."
                 tags={['WordPress', 'Showcase', 'Responsive']}
                 color="from-emerald-500/20 to-teal-500/20"
-                href="http://guilmault-catherine.fr/"
+                href="https://guilmault-catherine.fr/"
               />
               <ProjectCard
                 title="Portfolio DevOps"

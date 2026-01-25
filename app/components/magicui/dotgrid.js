@@ -1,5 +1,6 @@
 'use client';
 import { useRef, useEffect, useCallback, useMemo } from 'react';
+import PropTypes from 'prop-types';
 import { gsap } from 'gsap';
 import { InertiaPlugin } from 'gsap/InertiaPlugin';
 
@@ -22,25 +23,25 @@ function hexToRgb(hex) {
   const m = hex.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i);
   if (!m) return { r: 0, g: 0, b: 0 };
   return {
-    r: parseInt(m[1], 16),
-    g: parseInt(m[2], 16),
-    b: parseInt(m[3], 16)
+    r: Number.parseInt(m[1], 16),
+    g: Number.parseInt(m[2], 16),
+    b: Number.parseInt(m[3], 16)
   };
 }
 
 const DotGrid = ({
-  dotSize = 16,
-  gap = 32,
-  baseColor = '#5227FF',
-  activeColor = '#5227FF',
-  proximity = 150,
-  speedTrigger = 100,
-  shockRadius = 250,
-  shockStrength = 5,
-  maxSpeed = 5000,
-  resistance = 750,
-  returnDuration = 1.5,
-  className = '',
+  dotSize,
+  gap,
+  baseColor,
+  activeColor,
+  proximity,
+  speedTrigger,
+  shockRadius,
+  shockStrength,
+  maxSpeed,
+  resistance,
+  returnDuration,
+  className,
   style
 }) => {
   const wrapperRef = useRef(null);
@@ -61,9 +62,9 @@ const DotGrid = ({
   const activeRgb = useMemo(() => hexToRgb(activeColor), [activeColor]);
 
   const circlePath = useMemo(() => {
-    if (typeof window === 'undefined' || !window.Path2D) return null;
+    if (typeof globalThis === 'undefined' || !globalThis.Path2D) return null;
 
-    const p = new window.Path2D();
+    const p = new globalThis.Path2D();
     p.arc(0, 0, dotSize / 2, 0, Math.PI * 2);
     return p;
   }, [dotSize]);
@@ -74,7 +75,7 @@ const DotGrid = ({
     if (!wrap || !canvas) return;
 
     const { width, height } = wrap.getBoundingClientRect();
-    const dpr = window.devicePixelRatio || 1;
+    const dpr = globalThis.devicePixelRatio || 1;
 
     canvas.width = width * dpr;
     canvas.height = height * dpr;
@@ -129,19 +130,19 @@ const DotGrid = ({
         const dy = dot.cy - py;
         const dsq = dx * dx + dy * dy;
 
-        let style = baseColor;
+        let fillStyle = baseColor;
         if (dsq <= proxSq) {
           const dist = Math.sqrt(dsq);
           const t = 1 - dist / proximity;
           const r = Math.round(baseRgb.r + (activeRgb.r - baseRgb.r) * t);
           const g = Math.round(baseRgb.g + (activeRgb.g - baseRgb.g) * t);
           const b = Math.round(baseRgb.b + (activeRgb.b - baseRgb.b) * t);
-          style = `rgb(${r},${g},${b})`;
+          fillStyle = `rgb(${r},${g},${b})`;
         }
 
         ctx.save();
         ctx.translate(ox, oy);
-        ctx.fillStyle = style;
+        ctx.fillStyle = fillStyle;
         ctx.fill(circlePath);
         ctx.restore();
       }
@@ -156,15 +157,15 @@ const DotGrid = ({
   useEffect(() => {
     buildGrid();
     let ro = null;
-    if ('ResizeObserver' in window) {
+    if ('ResizeObserver' in globalThis) {
       ro = new ResizeObserver(buildGrid);
       wrapperRef.current && ro.observe(wrapperRef.current);
     } else {
-      window.addEventListener('resize', buildGrid);
+      globalThis.addEventListener('resize', buildGrid);
     }
     return () => {
       if (ro) ro.disconnect();
-      else window.removeEventListener('resize', buildGrid);
+      else globalThis.removeEventListener('resize', buildGrid);
     };
   }, [buildGrid]);
 
@@ -247,12 +248,12 @@ const DotGrid = ({
     };
 
     const throttledMove = throttle(onMove, 50);
-    window.addEventListener('mousemove', throttledMove, { passive: true });
-    window.addEventListener('click', onClick);
+    globalThis.addEventListener('mousemove', throttledMove, { passive: true });
+    globalThis.addEventListener('click', onClick);
 
     return () => {
-      window.removeEventListener('mousemove', throttledMove);
-      window.removeEventListener('click', onClick);
+      globalThis.removeEventListener('mousemove', throttledMove);
+      globalThis.removeEventListener('click', onClick);
     };
   }, [maxSpeed, speedTrigger, proximity, resistance, returnDuration, shockRadius, shockStrength]);
 
@@ -263,6 +264,38 @@ const DotGrid = ({
       </div>
     </section>
   );
+};
+
+DotGrid.propTypes = {
+  dotSize: PropTypes.number,
+  gap: PropTypes.number,
+  baseColor: PropTypes.string,
+  activeColor: PropTypes.string,
+  proximity: PropTypes.number,
+  speedTrigger: PropTypes.number,
+  shockRadius: PropTypes.number,
+  shockStrength: PropTypes.number,
+  maxSpeed: PropTypes.number,
+  resistance: PropTypes.number,
+  returnDuration: PropTypes.number,
+  className: PropTypes.string,
+  style: PropTypes.object
+};
+
+DotGrid.defaultProps = {
+  dotSize: 16,
+  gap: 32,
+  baseColor: '#5227FF',
+  activeColor: '#5227FF',
+  proximity: 150,
+  speedTrigger: 100,
+  shockRadius: 250,
+  shockStrength: 5,
+  maxSpeed: 5000,
+  resistance: 750,
+  returnDuration: 1.5,
+  className: '',
+  style: undefined
 };
 
 export default DotGrid;
