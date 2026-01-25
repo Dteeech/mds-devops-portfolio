@@ -19,11 +19,11 @@ describe('HeroSection Component', () => {
     expect(badge).toBeInTheDocument();
   });
 
-  it('devrait afficher le sous-titre "Fullstack Dev & SEO Architect"', () => {
+  it('devrait afficher le sous-titre "Dev Fullstack & Chef de Projet Digital"', () => {
     render(<HeroSection />);
     const heading = screen.getByRole('heading', { level: 1 });
-    expect(heading).toHaveTextContent(/Fullstack Dev &/i);
-    expect(heading).toHaveTextContent(/SEO Architect/i);
+    expect(heading).toHaveTextContent(/Dev Fullstack &/i);
+    expect(heading).toHaveTextContent(/Chef de Projet Digital/i);
   });
 
   it('devrait afficher la description du profil', () => {
