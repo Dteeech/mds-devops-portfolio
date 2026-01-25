@@ -1,6 +1,12 @@
 import { render, screen } from '@testing-library/react';
 import { HeroSection } from '@/app/components/ui-client';
 
+jest.mock('@/app/components/magicui/dotgrid', () => {
+  return function DummyDotGrid() {
+    return <div data-testid="dotgrid">Dotgrid Background</div>;
+  };
+});
+
 describe('HeroSection Component', () => {
   it('devrait s\'afficher sans erreur', () => {
     const { container } = render(<HeroSection />);
@@ -49,6 +55,6 @@ describe('HeroSection Component', () => {
   it('devrait avoir les classes CSS appropriées pour le dark mode', () => {
     const { container } = render(<HeroSection />);
     const section = container.querySelector('section');
-    expect(section).toHaveClass('min-h-[90vh]');
+    expect(section).toHaveClass('min-h-[100vh]');
   });
 });

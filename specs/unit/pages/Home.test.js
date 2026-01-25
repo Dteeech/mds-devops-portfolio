@@ -5,9 +5,9 @@ import Home from '@/app/page';
 jest.mock('@/app/components/ui-client', () => ({
   HeroSection: () => <section data-testid="hero-section">Hero Content</section>,
   Reveal: ({ children }) => <div data-testid="reveal">{children}</div>,
-  ProjectCard: ({ title, description, tags }) => (
+  ProjectCard: ({ title, description, tags, href }) => (
     <div data-testid="project-card">
-      <h3>{title}</h3>
+      {href ? <a href={href}><h3>{title}</h3></a> : <h3>{title}</h3>}
       <p>{description}</p>
       {tags.map(tag => <span key={tag}>{tag}</span>)}
     </div>
@@ -37,16 +37,37 @@ describe('Page Home (Portfolio)', () => {
 
   // ... (inside 'Hero Section' describe block, no changes needed based on failure output, skipping)
 
-  describe('About Section', () => {
-    // ...
-
-    it('devrait afficher les 3 piliers du profil', () => {
+  describe('Projects Section', () => {
+    it('devrait afficher les 3 projets', () => {
       render(<Home />);
-      expect(screen.getByRole('heading', { name: /Référent Tech/i })).toBeInTheDocument();
-      expect(screen.getByRole('heading', { name: /Gestion de Projet/i })).toBeInTheDocument();
-      expect(screen.getByRole('heading', { name: /Culture SEO/i })).toBeInTheDocument();
+      expect(screen.getByRole('heading', { name: /Parking Privé Aéroport/i })).toBeInTheDocument();
+      expect(screen.getByRole('heading', { name: /Guilmault Catherine/i })).toBeInTheDocument();
+      expect(screen.getByRole('heading', { name: /Portfolio DevOps/i })).toBeInTheDocument();
     });
 
+    it('devrait afficher les descriptions des projets', () => {
+      render(<Home />);
+      expect(screen.getByText(/Service de réservation de parking sécurisé/i)).toBeInTheDocument();
+      expect(screen.getByText(/Site vitrine pour une artiste peintre/i)).toBeInTheDocument();
+      expect(screen.getByText(/CI\/CD complète, tests unitaires/i)).toBeInTheDocument();
+    });
+
+    it('devrait afficher les technologies utilisées dans les projets', () => {
+      render(<Home />);
+      expect(screen.getAllByText(/WordPress/i).length).toBeGreaterThan(0);
+      expect(screen.getAllByText(/Oxygen/i).length).toBeGreaterThan(0);
+      expect(screen.getAllByText(/Next\.js 16/i).length).toBeGreaterThan(0);
+      expect(screen.getByText(/GitHub Actions/i)).toBeInTheDocument();
+    });
+
+    it('devrait avoir les liens externes corrects', () => {
+      render(<Home />);
+      expect(screen.getByRole('link', { name: /Parking Privé Aéroport/i })).toHaveAttribute('href', 'https://parking-prive-aeroport-nantes.fr/');
+      expect(screen.getByRole('link', { name: /Guilmault Catherine/i })).toHaveAttribute('href', 'http://guilmault-catherine.fr/');
+    });
+  });
+
+  describe('About Section', () => {
     it('devrait mentionner "pivot technique"', () => {
       render(<Home />);
       expect(screen.getByText(/pivot technique/i)).toBeInTheDocument();

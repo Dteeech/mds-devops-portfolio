@@ -100,7 +100,7 @@ export default function Home() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <SkillBadge icon={<MagnifyingGlassIcon className="w-5 h-5" weight="duotone" />} name="SEO Technique" level="Expert" />
                   <SkillBadge icon={<CpuIcon className="w-5 h-5" weight="duotone" />} name="Core Web Vitals" level="Expert" />
-                  <SkillBadge icon={<DatabaseIcon className="w-5 h-5" weight="duotone" />} name="PostgreSQL" level="Intermédiaire" />
+                  <SkillBadge icon={<DatabaseIcon className="w-5 h-5" weight="duotone" />} name="WordPress" level="Avancé" />
                   <SkillBadge icon={<GlobeIcon className="w-5 h-5" weight="duotone" />} name="Gestion Agile" level="Scrum/Kanban" />
                 </div>
               </div>
@@ -119,22 +119,25 @@ export default function Home() {
             </h2>
             <div className="grid md:grid-cols-3 gap-6">
               <ProjectCard
-                title="SaaS Audit SEO"
-                description="Plateforme d'analyse automatisée de Core Web Vitals avec rapports PDF générés à la volée."
-                tags={['Next.js 15', 'Puppeteer', 'Postgres']}
-                color="from-indigo-500/20 to-purple-500/20"
+                title="Parking Privé Aéroport"
+                description="Service de réservation de parking sécurisé. Optimisation SEO locale et parcours utilisateur fluide."
+                tags={['WordPress', 'Oxygen', 'SEO Local']}
+                color="from-blue-500/20 to-indigo-500/20"
+                href="https://parking-prive-aeroport-nantes.fr/"
               />
               <ProjectCard
-                title="E-commerce Headless"
-                description="Front-end ultra-rapide connecté à Shopify Plus. Score Lighthouse 100/100."
-                tags={['React 19', 'Shopify API', 'Zustand']}
+                title="Guilmault Catherine artiste peintre"
+                description="Site vitrine pour une artiste peintre. Design épuré et mise en avant des réalisations."
+                tags={['WordPress', 'Showcase', 'Responsive']}
                 color="from-emerald-500/20 to-teal-500/20"
+                href="http://guilmault-catherine.fr/"
               />
               <ProjectCard
-                title="Dashboard Analytics"
-                description="Interface d'administration pour agence marketing avec visualisation de données en temps réel."
-                tags={['Tremor', 'Tailwind', 'Supabase']}
-                color="from-blue-500/20 to-cyan-500/20"
+                title="Portfolio DevOps"
+                description="Ce portfolio ! CI/CD complète, tests unitaires, Docker et déploiement automatisé sur VPS."
+                tags={['Next.js 16', 'Docker', 'GitHub Actions']}
+                color="from-purple-500/20 to-pink-500/20"
+                href="https://github.com/Dteeech/mds-devops-portfolio"
               />
             </div>
           </Reveal>
@@ -156,7 +159,9 @@ export default function Home() {
               <div className="md:w-1/2 bg-zinc-50 dark:bg-zinc-900/30 rounded-2xl p-8 border border-zinc-200 dark:border-zinc-800 flex flex-col justify-center items-center text-center">
                 <h3 className="text-2xl font-bold mb-4 text-zinc-900 dark:text-white">Prêt à collaborer ?</h3>
                 <p className="text-zinc-600 dark:text-zinc-400 mb-8">
-                  Je suis à l'écoute d'opportunités pour des projets ambitieux nécessitant une expertise technique pointue.
+                  Je suis à l'écoute de vos opportunités.
+                  <br />
+                  Contactez-moi sur LinkedIn.
                 </p>
                 <a
                   href="https://www.linkedin.com/in/isaac-marshall-106660227/"
