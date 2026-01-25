@@ -1,6 +1,5 @@
 
-
-import { Code, Database, Globe, Layout, MagnifyingGlass, Terminal, Cpu, Stack } from '@phosphor-icons/react/dist/ssr';
+import { CodeIcon, DatabaseIcon, GlobeIcon, LayoutIcon, MagnifyingGlassIcon, TerminalIcon, CpuIcon, StackIcon, CheckCircleIcon, KanbanIcon, RocketLaunchIcon } from '@phosphor-icons/react/dist/ssr';
 import { HeroSection, Reveal, ProjectCard, SkillBadge, TechStack } from './components/ui-client';
 
 export const metadata = {
@@ -18,50 +17,52 @@ export default function Home() {
       <section id="about" className="py-24 px-6 border-t border-zinc-200 dark:border-zinc-900">
         <div className="max-w-5xl mx-auto">
           <Reveal>
-            <h2 className="text-3xl font-bold mb-12 flex items-center gap-3">
-              <span className="w-8 h-1 bg-indigo-500 rounded-full"></span> {' '}
+            <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
+              <span className="w-8 h-1 bg-indigo-600 dark:bg-indigo-400 rounded-full"></span> {' '}
               À propos
             </h2>
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div className="space-y-6 text-zinc-600 dark:text-zinc-400 text-lg leading-relaxed">
-                <p>
-                  <strong className="text-zinc-900 dark:text-white">4 ans d'expérience</strong> dans le développement web, je suis actuellement en alternance chez <a href="https://passedevant.net" target="_blank" className="text-indigo-600 dark:text-indigo-400 hover:underline">Passedevant</a> tout en finalisant mon Master Chef de Projet Digital à <span className="text-indigo-600 dark:text-indigo-400">My Digital School Saint-Herblain</span>.
-                </p>
-                <p>
-                  Mon approche combine technique et gestion de projet : je conçois des architectures pensées pour la <strong className="text-zinc-900 dark:text-white">visibilité</strong> et la <strong className="text-zinc-900 dark:text-white">performance</strong> durable.
-                </p>
-                <p>
-                  Toujours à l'affût des dernières innovations (React 19, Next.js, Phosphor Icons) pour proposer des solutions modernes et pérennes.
+
+            <div className="mb-16 max-w-3xl">
+              <p className="text-2xl md:text-3xl font-semibold leading-tight text-zinc-800 dark:text-zinc-100 mb-6">
+                Plus qu'un développeur, je suis le <span className="text-indigo-600 dark:text-indigo-400">pivot technique</span> de vos projets.
+              </p>
+              <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                Profil hybride <strong>Développeur Fullstack & Chef de Projet Digital</strong>. Je ne me contente pas de livrer du code : je garantis la cohérence technique, le respect des délais et la performance native de vos applications.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {/* Pillier 1 : Référent Tech */}
+              <div className="p-6 bg-white dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-sm hover:border-indigo-500/30 transition-colors">
+                <div className="w-12 h-12 mb-4 bg-indigo-100 dark:bg-indigo-500/10 rounded-xl flex items-center justify-center text-indigo-600 dark:text-indigo-400">
+                  <TerminalIcon className="w-6 h-6" weight="duotone" />
+                </div>
+                <h3 className="text-xl font-bold mb-3 text-zinc-900 dark:text-white">Référent Tech</h3>
+                <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed mb-4">
+                  Je ne suis pas un simple exécutant. Je challenge les specs, garantis la qualité du code et choisis les meilleures solutions techniques (Next.js 15, Tailwind v4) pour un produit robuste.
                 </p>
               </div>
-              <div className="relative">
-                <div className="absolute inset-0 bg-indigo-500/20 blur-3xl rounded-full opacity-20"></div>
-                <div className="relative p-8 bg-white dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-sm dark:shadow-none">
-                  <h3 className="text-xl font-semibold text-zinc-900 dark:text-white mb-4">Mon Parcours</h3>
-                  <ul className="space-y-4">
-                    <li className="flex gap-4">
-                      <div className="w-2 h-2 mt-2 rounded-full bg-indigo-500"></div>
-                      <div>
-                        <div className="text-zinc-900 dark:text-white font-medium">Master Chef de Projet Digital</div>
-                        <div className="text-sm text-zinc-500">My Digital School, St-Herblain • En cours</div>
-                      </div>
-                    </li>
-                    <li className="flex gap-4">
-                      <div className="w-2 h-2 mt-2 rounded-full bg-zinc-400 dark:bg-zinc-600"></div>
-                      <div>
-                        <div className="text-zinc-900 dark:text-white font-medium">Alternance Dev & Chef de Projet</div>
-                        <div className="text-sm text-zinc-500">Passedevant • Depuis 2023</div>
-                      </div>
-                    </li>
-                    <li className="flex gap-4">
-                      <div className="w-2 h-2 mt-2 rounded-full bg-zinc-400 dark:bg-zinc-600"></div>
-                      <div>
-                        <div className="text-zinc-900 dark:text-white font-medium">Concepteur Développeur d'Applications</div>
-                        <div className="text-sm text-zinc-500">Titre RNCP Niv. 6 • Diplômé Bachelor</div>
-                      </div>
-                    </li>
-                  </ul>
+
+              {/* Pillier 2 : Gestion de Projet */}
+              <div className="p-6 bg-white dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-sm hover:border-indigo-500/30 transition-colors">
+                <div className="w-12 h-12 mb-4 bg-indigo-100 dark:bg-indigo-500/10 rounded-xl flex items-center justify-center text-indigo-600 dark:text-indigo-400">
+                  <KanbanIcon className="w-6 h-6" weight="duotone" />
                 </div>
+                <h3 className="text-xl font-bold mb-3 text-zinc-900 dark:text-white">Gestion de Projet</h3>
+                <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed mb-4">
+                  Expert ClickUp. Je gère les ODR, les comptes rendus et le suivi des tâches avec une rigueur militaire. Mon objectif : zéro friction entre la technique et le business.
+                </p>
+              </div>
+
+              {/* Pillier 3 : Relation SEO */}
+              <div className="p-6 bg-white dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-sm hover:border-indigo-500/30 transition-colors">
+                <div className="w-12 h-12 mb-4 bg-indigo-100 dark:bg-indigo-500/10 rounded-xl flex items-center justify-center text-indigo-600 dark:text-indigo-400">
+                  <RocketLaunchIcon className="w-6 h-6" weight="duotone" />
+                </div>
+                <h3 className="text-xl font-bold mb-3 text-zinc-900 dark:text-white">Culture SEO</h3>
+                <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed mb-4">
+                  En agence SEO, j'ai appris que la vitesse est reine. Je maîtrise les Core Web Vitals et la sémantique HTML pour livrer des sites nativement optimisés pour Google.
+                </p>
               </div>
             </div>
           </Reveal>
@@ -80,27 +81,27 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
               <div>
                 <h3 className="text-xl font-semibold mb-6 text-zinc-800 dark:text-zinc-200 flex items-center gap-2">
-                  <Code className="w-5 h-5 text-indigo-500 dark:text-indigo-400" weight="bold" />
+                  <CodeIcon className="w-5 h-5 text-indigo-500 dark:text-indigo-400" weight="bold" />
                   Tech Stack
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <SkillBadge icon={<Globe className="w-5 h-5" weight="duotone" />} name="Next.js 16" level="Expert" />
-                  <SkillBadge icon={<Layout className="w-5 h-5" weight="duotone" />} name="React 19" level="Avancé" />
-                  <SkillBadge icon={<Terminal className="w-5 h-5" weight="duotone" />} name="TypeScript" level="Avancé" />
-                  <SkillBadge icon={<Stack className="w-5 h-5" weight="duotone" />} name="Tailwind v4" level="Expert" />
+                  <SkillBadge icon={<GlobeIcon className="w-5 h-5" weight="duotone" />} name="Next.js 16" level="Expert" />
+                  <SkillBadge icon={<LayoutIcon className="w-5 h-5" weight="duotone" />} name="React 19" level="Avancé" />
+                  <SkillBadge icon={<TerminalIcon className="w-5 h-5" weight="duotone" />} name="TypeScript" level="Avancé" />
+                  <SkillBadge icon={<StackIcon className="w-5 h-5" weight="duotone" />} name="Tailwind v4" level="Expert" />
                 </div>
               </div>
 
               <div>
                 <h3 className="text-xl font-semibold mb-6 text-zinc-800 dark:text-zinc-200 flex items-center gap-2">
-                  <MagnifyingGlass className="w-5 h-5 text-indigo-500 dark:text-indigo-400" weight="bold" />
+                  <MagnifyingGlassIcon className="w-5 h-5 text-indigo-500 dark:text-indigo-400" weight="bold" />
                   Transverse & SEO
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <SkillBadge icon={<MagnifyingGlass className="w-5 h-5" weight="duotone" />} name="SEO Technique" level="Expert" />
-                  <SkillBadge icon={<Cpu className="w-5 h-5" weight="duotone" />} name="Core Web Vitals" level="Expert" />
-                  <SkillBadge icon={<Database className="w-5 h-5" weight="duotone" />} name="PostgreSQL" level="Intermédiaire" />
-                  <SkillBadge icon={<Globe className="w-5 h-5" weight="duotone" />} name="Gestion Agile" level="Scrum/Kanban" />
+                  <SkillBadge icon={<MagnifyingGlassIcon className="w-5 h-5" weight="duotone" />} name="SEO Technique" level="Expert" />
+                  <SkillBadge icon={<CpuIcon className="w-5 h-5" weight="duotone" />} name="Core Web Vitals" level="Expert" />
+                  <SkillBadge icon={<DatabaseIcon className="w-5 h-5" weight="duotone" />} name="PostgreSQL" level="Intermédiaire" />
+                  <SkillBadge icon={<GlobeIcon className="w-5 h-5" weight="duotone" />} name="Gestion Agile" level="Scrum/Kanban" />
                 </div>
               </div>
             </div>
@@ -158,7 +159,9 @@ export default function Home() {
                   Je suis à l'écoute d'opportunités pour des projets ambitieux nécessitant une expertise technique pointue.
                 </p>
                 <a
-                  href="mailto:isaac.passedevant@gmail.com"
+                  href="https://www.linkedin.com/in/isaac-marshall-106660227/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-full transition-all hover:scale-105 shadow-lg shadow-indigo-500/20"
                 >
                   Me contacter

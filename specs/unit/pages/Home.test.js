@@ -40,11 +40,16 @@ describe('Page Home (Portfolio)', () => {
   describe('About Section', () => {
     // ...
 
-    it('devrait afficher les informations du parcours', () => {
+    it('devrait afficher les 3 piliers du profil', () => {
       render(<Home />);
-      expect(screen.getAllByText(/Master Chef de Projet Digital/i).length).toBeGreaterThan(0);
-      expect(screen.getByText(/Alternance Dev & Chef de Projet/i)).toBeInTheDocument();
-      expect(screen.getByText(/Concepteur Développeur d'Applications/i)).toBeInTheDocument();
+      expect(screen.getByRole('heading', { name: /Référent Tech/i })).toBeInTheDocument();
+      expect(screen.getByRole('heading', { name: /Gestion de Projet/i })).toBeInTheDocument();
+      expect(screen.getByRole('heading', { name: /Culture SEO/i })).toBeInTheDocument();
+    });
+
+    it('devrait mentionner "pivot technique"', () => {
+      render(<Home />);
+      expect(screen.getByText(/pivot technique/i)).toBeInTheDocument();
     });
   });
 
@@ -56,15 +61,12 @@ describe('Page Home (Portfolio)', () => {
       render(<Home />);
       const contactLink = screen.getByRole('link', { name: /Me contacter/i });
       expect(contactLink).toBeInTheDocument();
-      expect(contactLink).toHaveAttribute('href', 'mailto:isaac.passedevant@gmail.com');
+      expect(contactLink).toHaveAttribute('href', 'https://www.linkedin.com/in/isaac-marshall-106660227/');
     });
   });
 
   describe('Footer', () => {
-    it('devrait afficher le footer avec le copyright', () => {
-      render(<Home />);
-      expect(screen.getByText(/© 2025 Isaac/i)).toBeInTheDocument();
-    });
+
 
     it('devrait mentionner les technologies utilisées dans le footer', () => {
       render(<Home />);

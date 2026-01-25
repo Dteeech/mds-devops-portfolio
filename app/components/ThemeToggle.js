@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { Moon, Sun } from '@phosphor-icons/react';
+import { MoonIcon, SunIcon } from '@phosphor-icons/react';
 import { useTheme } from 'next-themes';
 import { motion } from 'framer-motion';
 
@@ -26,9 +26,9 @@ export function ThemeToggle() {
       aria-label="Toggle Theme"
     >
       {theme === 'dark' ? (
-        <Moon className="w-5 h-5" weight="fill" />
+        <MoonIcon className="w-5 h-5" weight="fill" />
       ) : (
-        <Sun className="w-5 h-5" weight="fill" />
+        <SunIcon className="w-5 h-5" weight="fill" />
       )}
     </motion.button>
   );

@@ -15,7 +15,7 @@ describe('HeroSection Component', () => {
 
   it('devrait afficher le badge de la stack technique', () => {
     render(<HeroSection />);
-    const badge = screen.getByText(/Stack : Next\.js 16 & Tailwind v4/i);
+    const badge = screen.getByText(/Stack favorite : Next\.js & Tailwind/i);
     expect(badge).toBeInTheDocument();
   });
 

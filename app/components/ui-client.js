@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowRight, ArrowSquareOut, Layout } from '@phosphor-icons/react';
+import { ArrowRightIcon, ArrowSquareOutIcon, LayoutIcon } from '@phosphor-icons/react';
 import Image from 'next/image';
 
 export function HeroSection() {
@@ -14,7 +14,7 @@ export function HeroSection() {
           transition={{ duration: 0.5 }}
         >
           <span className="inline-block px-3 py-1 mb-6 text-xs font-medium tracking-wider text-indigo-600 dark:text-indigo-400 uppercase bg-indigo-500/10 rounded-full border border-indigo-500/20">
-            Stack : Next.js 16 & Tailwind v4
+            Stack favorite : Next.js & Tailwind
           </span>
         </motion.div>
 
@@ -46,7 +46,7 @@ export function HeroSection() {
         >
           <a href="#projects" className="group flex items-center gap-2 px-6 py-3 bg-zinc-900 text-white dark:bg-white dark:text-black font-semibold rounded-lg hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors">
             Voir mes projets
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" weight="bold" />
+            <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-1 transition-transform" weight="bold" />
           </a>
           <a href="#contact" className="flex items-center gap-2 px-6 py-3 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white font-semibold rounded-lg border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors">
             Me contacter
@@ -97,9 +97,9 @@ export function ProjectCard({ title, description, tags, color }) {
       <div className="relative z-10">
         <div className="flex justify-between items-start mb-4">
           <div className="p-3 bg-zinc-50 dark:bg-zinc-950 rounded-xl border border-zinc-100 dark:border-zinc-800 group-hover:border-zinc-200 dark:group-hover:border-zinc-700 transition-colors">
-            <Layout className="w-6 h-6 text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white transition-colors" weight="duotone" />
+            <LayoutIcon className="w-6 h-6 text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white transition-colors" weight="duotone" />
           </div>
-          <ArrowSquareOut className="w-5 h-5 text-zinc-400 dark:text-zinc-600 group-hover:text-zinc-900 dark:group-hover:text-white transition-colors" weight="bold" />
+          <ArrowSquareOutIcon className="w-5 h-5 text-zinc-400 dark:text-zinc-600 group-hover:text-zinc-900 dark:group-hover:text-white transition-colors" weight="bold" />
         </div>
 
         <h3 className="text-xl font-bold mb-2 text-zinc-900 dark:text-zinc-100 group-hover:text-black dark:group-hover:text-white transition-colors">{title}</h3>
