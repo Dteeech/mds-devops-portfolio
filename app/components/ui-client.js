@@ -86,7 +86,7 @@ export function HeroSection() {
               Voir mes projets
               <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-1 transition-transform" weight="bold" />
             </a>
-            <a href="#contact" className="flex items-center gap-2 px-6 py-3 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white font-semibold rounded-lg border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors">
+            <a href="https://www.linkedin.com/in/isaac-marshall-106660227/" className="flex items-center gap-2 px-6 py-3 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white font-semibold rounded-lg border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors">
               Me contacter
             </a>
           </motion.div>
