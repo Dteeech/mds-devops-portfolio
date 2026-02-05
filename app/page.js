@@ -3,8 +3,8 @@ import { CodeIcon, DatabaseIcon, GlobeIcon, LayoutIcon, MagnifyingGlassIcon, Ter
 import { HeroSection, Reveal, ProjectCard, SkillBadge, TechStack } from './components/ui-client';
 
 export const metadata = {
-  title: 'Isaac | Dev Fullstack & Chef de Projet Digital',
-  description: 'Portfolio de Isaac, développeur Fullstack et Chef de Projet Digital chez Passedevant.',
+  title: 'Isaac MARSHALL | Dev Fullstack & Chef de Projet Digital',
+  description: 'Portfolio de Isaac Marshall, développeur Fullstack et Chef de Projet Digital chez Passedevant.',
 };
 
 export default function Home() {
