@@ -40,4 +40,11 @@ describe('ProjectCard Component', () => {
     expect(card).toHaveClass('group');
     expect(card).toHaveClass('rounded-2xl');
   });
+
+  it('devrait être un lien si href est fourni', () => {
+    render(<ProjectCard {...mockProps} href="https://example.com" />);
+    const link = screen.getByRole('link');
+    expect(link).toHaveAttribute('href', 'https://example.com');
+  });
 });
+

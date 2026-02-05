@@ -1,6 +1,8 @@
 
-import { CodeIcon, DatabaseIcon, GlobeIcon, LayoutIcon, MagnifyingGlassIcon, TerminalIcon, CpuIcon, StackIcon, CheckCircleIcon, KanbanIcon, RocketLaunchIcon } from '@phosphor-icons/react/dist/ssr';
+import { CodeIcon,FileTsIcon, MagnifyingGlassIcon, GlobeIcon, TerminalIcon, CpuIcon, StackIcon, AtomIcon, KanbanIcon, RocketLaunchIcon, FileTsxIcon } from '@phosphor-icons/react/dist/ssr';
 import { HeroSection, Reveal, ProjectCard, SkillBadge, TechStack } from './components/ui-client';
+
+
 
 export const metadata = {
   title: 'Isaac MARSHALL | Dev Fullstack & Chef de Projet Digital',
@@ -27,7 +29,7 @@ export default function Home() {
                 Plus qu'un développeur, je suis le <span className="text-indigo-600 dark:text-indigo-400">pivot technique</span> de vos projets.
               </p>
               <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                Profil hybride <strong>Développeur Fullstack & Chef de Projet Digital</strong>. Je ne me contente pas de livrer du code : je garantis la cohérence technique, le respect des délais et la performance native de vos applications.
+                Profil hybride <strong>Développeur Fullstack & Chef de Projet Digital</strong>. Je ne me contente pas de livrer du code : je garantis la cohérence technique, le respect des délais et la performance native de vos applications web.
               </p>
             </div>
 
@@ -39,7 +41,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-bold mb-3 text-zinc-900 dark:text-white">Référent Tech</h3>
                 <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed mb-4">
-                  Je ne suis pas un simple exécutant. Je challenge les specs, garantis la qualité du code et choisis les meilleures solutions techniques (Next.js 15, Tailwind v4) pour un produit robuste.
+                  Je ne suis pas un simple exécutant. Je challenge les specs, garantis la qualité du code et choisis les meilleures solutions techniques pour un produit robuste.
                 </p>
               </div>
 
@@ -50,7 +52,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-bold mb-3 text-zinc-900 dark:text-white">Gestion de Projet</h3>
                 <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed mb-4">
-                  Expert ClickUp. Je gère les ODR, les comptes rendus et le suivi des tâches avec une rigueur militaire. Mon objectif : zéro friction entre la technique et le business.
+                  Je gère les ODR, les comptes rendus et le suivi des tâches. Mon objectif : zéro friction entre le cadrage et la production.
                 </p>
               </div>
 
@@ -61,7 +63,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-bold mb-3 text-zinc-900 dark:text-white">Culture SEO</h3>
                 <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed mb-4">
-                  En agence SEO, j'ai appris que la vitesse est reine. Je maîtrise les Core Web Vitals et la sémantique HTML pour livrer des sites nativement optimisés pour Google.
+                  En agence SEO, j'ai appris que la vitesse est reine. Je maîtrise les Core Web Vitals et la sémantique pour livrer des sites optimisés pour le référencement.
                 </p>
               </div>
             </div>
@@ -85,9 +87,9 @@ export default function Home() {
                   Tech Stack
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <SkillBadge icon={<GlobeIcon className="w-5 h-5" weight="duotone" />} name="Next.js 16" level="Expert" />
-                  <SkillBadge icon={<LayoutIcon className="w-5 h-5" weight="duotone" />} name="React 19" level="Avancé" />
-                  <SkillBadge icon={<TerminalIcon className="w-5 h-5" weight="duotone" />} name="TypeScript" level="Avancé" />
+                  <SkillBadge icon={<FileTsxIcon className="w-5 h-5" weight="duotone" />} name="Next.js 16" level="Expert" />
+                  <SkillBadge icon={<AtomIcon className="w-5 h-5" weight="duotone" />} name="React 19" level="Avancé" />
+                  <SkillBadge icon={<FileTsIcon className="w-5 h-5" weight="duotone" />} name="TypeScript" level="Avancé" />
                   <SkillBadge icon={<StackIcon className="w-5 h-5" weight="duotone" />} name="Tailwind v4" level="Expert" />
                 </div>
               </div>
@@ -98,10 +100,10 @@ export default function Home() {
                   Transverse & SEO
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <SkillBadge icon={<MagnifyingGlassIcon className="w-5 h-5" weight="duotone" />} name="SEO Technique" level="Expert" />
+                  <SkillBadge icon={<MagnifyingGlassIcon className="w-5 h-5" weight="duotone" />} name="Pratiques SEO" level="Expert" />
                   <SkillBadge icon={<CpuIcon className="w-5 h-5" weight="duotone" />} name="Core Web Vitals" level="Expert" />
-                  <SkillBadge icon={<DatabaseIcon className="w-5 h-5" weight="duotone" />} name="WordPress" level="Avancé" />
-                  <SkillBadge icon={<GlobeIcon className="w-5 h-5" weight="duotone" />} name="Gestion Agile" level="Scrum/Kanban" />
+                  <SkillBadge icon={<GlobeIcon className="w-5 h-5" weight="duotone" />} name="WordPress" level="Avancé" />
+                  <SkillBadge icon={<KanbanIcon className="w-5 h-5" weight="duotone" />} name="Gestion Agile" level="Scrum/Kanban" />
                 </div>
               </div>
             </div>
@@ -178,7 +180,7 @@ export default function Home() {
       </section>
 
       <footer className="py-8 text-center text-zinc-500 dark:text-zinc-600 text-sm border-t border-zinc-200 dark:border-zinc-900 bg-zinc-50 dark:bg-black">
-        <p>© 2025 Isaac. Construit avec Next.js 16 & Tailwind v4.</p>
+        <p>© 2026 Isaac. Développeur et chef de projet digital.</p>
       </footer>
     </main>
   );

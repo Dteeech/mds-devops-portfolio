@@ -2,11 +2,12 @@
 
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
-import { ArrowRightIcon, ArrowSquareOutIcon, LayoutIcon, CodeIcon, PaintBrushIcon, HardDrivesIcon, GitBranchIcon, PaperPlaneTiltIcon, CloudArrowUpIcon } from '@phosphor-icons/react';
+import { ArrowRightIcon, ArrowSquareOutIcon, LayoutIcon, CodeIcon, PaintBrushIcon, HardDrivesIcon, GitBranchIcon, PaperPlaneTiltIcon, CloudArrowUpIcon, FigmaLogoIcon, LinuxLogoIcon, NotionLogoIcon } from '@phosphor-icons/react';
 import Image from 'next/image';
 import DotGrid from './magicui/dotgrid';
 import { useTheme } from 'next-themes';
 import ShinyText from './magicui/ShinyText';
+import { AtomIcon, TerminalIcon } from 'lucide-react';
 
 
 export function HeroSection() {
@@ -30,7 +31,7 @@ export function HeroSection() {
         </div>
       </div>
 
-      <div className="w-full h-full flex flex-col md:flex-row justify-between items-center max-w-5xl mx-auto px-6 pt-32 md:pt-20 gap-12">
+      <div className="w-full h-full flex flex-col md:flex-row justify-between items-center max-w-5xl mx-auto px-6 pt-32 pb-12 md:pt-20 gap-12">
         <div className="flex-1 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -213,11 +214,13 @@ SkillBadge.propTypes = {
 export function TechStack() {
   const tools = [
     { name: "VS Code", type: "Editor", icon: CodeIcon },
-    { name: "Figma", type: "Design", icon: PaintBrushIcon },
+    { name: "Figma", type: "Design", icon: FigmaLogoIcon },
     { name: "Docker", type: "DevOps", icon: HardDrivesIcon },
     { name: "Git", type: "Version Control", icon: GitBranchIcon },
     { name: "Postman", type: "API Testing", icon: PaperPlaneTiltIcon },
-    { name: "Vercel", type: "Deployment", icon: CloudArrowUpIcon },
+    { name: "React", type: "Dev", icon: AtomIcon },
+    { name: "Linux", type: "Dev", icon: TerminalIcon },
+    { name: "Notion", type: "Project management", icon: NotionLogoIcon },
   ];
 
   return (
