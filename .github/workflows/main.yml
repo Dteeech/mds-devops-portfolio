@@ -107,13 +107,13 @@ jobs:
         run: echo "REPO_OWNER=$(echo ${{ github.repository_owner }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
 
       - name: 🐳 Build Docker Image
-        run: docker build -t portfolio-isaac .
+        run: docker build -t mds-devops-portfolio .
 
       - name: 🏷️ Tag Docker Image
-        run: docker tag portfolio-isaac ghcr.io/${{ env.REPO_OWNER }}/portfolio-isaac:latest
+        run: docker tag mds-devops-portfolio ghcr.io/${{ env.REPO_OWNER }}/mds-devops-portfolio:latest
 
       - name: 🚀 Push Docker Image
-        run: docker push ghcr.io/${{ env.REPO_OWNER }}/portfolio-isaac:latest
+        run: docker push ghcr.io/${{ env.REPO_OWNER }}/mds-devops-portfolio:latest
 
   # ═══════════════════════════════════════════
   # 🚢 DEPLOYMENT
@@ -126,13 +126,28 @@ jobs:
     steps:
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v0.1.6
+        env:
+          NEXT_PUBLIC_FARO_URL: ${{ secrets.FARO_COLLECTOR_URL }}
+          OTEL_SERVICE_NAME: ${{ secrets.OTEL_SERVICE_NAME }}
+          OTEL_EXPORTER_OTLP_ENDPOINT: ${{ secrets.OTEL_EXPORTER_OTLP_ENDPOINT }}
+          OTEL_EXPORTER_OTLP_HEADERS: ${{ secrets.OTEL_EXPORTER_OTLP_HEADERS }}
         with:
           host: ${{ secrets.DEPLOY_HOST }}
           username: ${{ secrets.DEPLOY_USER }}
           key: ${{ secrets.DEPLOY_KEY }}
           port: ${{ secrets.DEPLOY_PORT }}
+          envs: NEXT_PUBLIC_FARO_URL,OTEL_SERVICE_NAME,OTEL_EXPORTER_OTLP_ENDPOINT,OTEL_EXPORTER_OTLP_HEADERS
           script: |
-            cd /home/${{secrets.DEPLOY_USER}}/apps/portfolio
+            cd /home/${{ secrets.DEPLOY_USER }}/apps/portfolio
+
+            echo "NEXT_PUBLIC_FARO_URL=$NEXT_PUBLIC_FARO_URL" > .env
+            echo "NEXT_PUBLIC_FARO_APP_NAME=mds-devops-portfolio" >> .env
+            echo "NEXT_PUBLIC_FARO_ENV=production" >> .env
+            echo "OTEL_SERVICE_NAME=$OTEL_SERVICE_NAME" >> .env
+            echo "OTEL_EXPORTER_OTLP_ENDPOINT=$OTEL_EXPORTER_OTLP_ENDPOINT" >> .env
+            echo "OTEL_EXPORTER_OTLP_HEADERS=$OTEL_EXPORTER_OTLP_HEADERS" >> .env
+            echo "OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf" >> .env
+
             docker compose pull
             docker compose down
             docker compose up -d

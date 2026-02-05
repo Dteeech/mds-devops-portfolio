@@ -1,6 +1,18 @@
 import { render, screen } from '@testing-library/react';
 import { HeroSection } from '@/app/components/ui-client';
 
+jest.mock('@/app/components/magicui/dotgrid', () => {
+  return function DummyDotGrid() {
+    return <div data-testid="dotgrid">Dotgrid Background</div>;
+  };
+});
+
+jest.mock('@/app/components/magicui/ShinyText', () => {
+  return function DummyShinyText({ text }) {
+    return <span data-testid="shiny-text">{text}</span>;
+  };
+});
+
 describe('HeroSection Component', () => {
   it('devrait s\'afficher sans erreur', () => {
     const { container } = render(<HeroSection />);
@@ -15,15 +27,15 @@ describe('HeroSection Component', () => {
 
   it('devrait afficher le badge de la stack technique', () => {
     render(<HeroSection />);
-    const badge = screen.getByText(/Stack : Next\.js 16 & Tailwind v4/i);
+    const badge = screen.getByText(/Stack favorite : Next\.js & Tailwind/i);
     expect(badge).toBeInTheDocument();
   });
 
-  it('devrait afficher le sous-titre "Fullstack Dev & SEO Architect"', () => {
+  it('devrait afficher le sous-titre "Dev Fullstack & Chef de Projet Digital"', () => {
     render(<HeroSection />);
     const heading = screen.getByRole('heading', { level: 1 });
-    expect(heading).toHaveTextContent(/Fullstack Dev &/i);
-    expect(heading).toHaveTextContent(/SEO Architect/i);
+    expect(heading).toHaveTextContent(/Dev Fullstack &/i);
+    expect(heading).toHaveTextContent(/Chef de Projet Digital/i);
   });
 
   it('devrait afficher la description du profil', () => {
@@ -49,6 +61,6 @@ describe('HeroSection Component', () => {
   it('devrait avoir les classes CSS appropriées pour le dark mode', () => {
     const { container } = render(<HeroSection />);
     const section = container.querySelector('section');
-    expect(section).toHaveClass('min-h-[90vh]');
+    expect(section).toHaveClass('min-h-[100vh]');
   });
 });
