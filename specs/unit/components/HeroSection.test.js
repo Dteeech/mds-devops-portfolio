@@ -55,7 +55,7 @@ describe('HeroSection Component', () => {
     render(<HeroSection />);
     const contactLink = screen.getByRole('link', { name: /Me contacter/i });
     expect(contactLink).toBeInTheDocument();
-    expect(contactLink).toHaveAttribute('href', '#contact');
+    expect(contactLink).toHaveAttribute('href', 'https://www.linkedin.com/in/isaac-marshall-106660227/');
   });
 
   it('devrait avoir les classes CSS appropriées pour le dark mode', () => {
