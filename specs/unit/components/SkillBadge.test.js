@@ -1,10 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { SkillBadge } from '@/app/components/ui-client';
-import { Globe } from 'lucide-react';
 
 describe('SkillBadge Component', () => {
   const mockProps = {
-    icon: <Globe className="w-5 h-5" data-testid="skill-icon" />,
+    icon: <span data-testid="skill-icon">Icon</span>,
     name: 'Next.js 16',
     level: 'Expert',
   };
@@ -38,3 +37,4 @@ describe('SkillBadge Component', () => {
     expect(screen.getByText('Avancé')).toBeInTheDocument();
   });
 });
+
